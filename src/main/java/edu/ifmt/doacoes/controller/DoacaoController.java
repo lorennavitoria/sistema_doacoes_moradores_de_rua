@@ -52,7 +52,6 @@ public class DoacaoController {
         Doacao existingDoacao = existingDoacaoOptional.get();
         existingDoacao.setDoador(doacao.getDoador());
         existingDoacao.setPolo(doacao.getPolo());
-        existingDoacao.setData(LocalDateTime.now());
         existingDoacao.setTipoItemDoacao(doacao.getTipoItemDoacao());
         existingDoacao.setQuantidade(doacao.getQuantidade());
 
