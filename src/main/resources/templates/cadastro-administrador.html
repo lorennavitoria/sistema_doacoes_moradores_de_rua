@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Administrador</title>
+</head>
+<body>
+    <h1>Cadastro de Administrador</h1>
+    <form id="cadastro-administrador-form" onsubmit="submitForm(event)">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" required><br><br>
+
+        <label for="funcao">Função:</label>
+        <input type="text" id="funcao" name="funcao" required><br><br>
+
+        <label for="contato">Contato:</label>
+        <input type="text" id="contato" name="contato" required><br><br>
+
+        <button type="submit">Salvar</button>
+    </form>
+
+    <script>
+        function submitForm(event) {
+            event.preventDefault(); // Impede o envio do formulário padrão
+            const form = document.getElementById('cadastro-administrador-form');
+            const formData = new FormData(form);
+
+            fetch('/administrador', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert('Administrador criado com sucesso!');
+                    window.location.href = '/listar-administradores.html'; // Redireciona para a lista de administradores após o cadastro
+                } else {
+                    alert('Erro ao criar administrador.');
+                }
+            })
+            .catch(error => {
+                console.error('Erro ao enviar formulário:', error);
+                alert('Erro ao criar administrador.');
+            });
+        }
+    </script>
+</body>
+</html>

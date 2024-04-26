@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/style.css"/>
+    <meta charset="UTF-8"> 
+    <title>Listagem de Administradores</title>
+</head>
+<body>
+    <h1>Listagem de Administradores</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Função</th>
+                <th>Contato</th>
+                <th>Polo</th>
+            </tr>
+        </thead>
+        <tbody id="administradores-table-body">
+        </tbody>
+    </table>
+    
+    <script src="./JavaScript/jQuery.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            // Faz a requisição AJAX para obter a lista de administradores
+            $.ajax({
+                url: 'http://localhost:8080/administrador',
+                type: 'GET',
+                success: function(data) {
+                    // Converte os dados para um objeto JavaScript
+                    var administradores = JSON.parse(data);
+                    
+                    // Para cada administrador retornado, cria uma linha na tabela
+                    administradores.forEach(function(administrador) {
+                        var row = '<tr>' +
+                                    '<td>' + administrador.idAdministrador + '</td>' +
+                                    '<td>' + administrador.nome + '</td>' +
+                                    '<td>' + administrador.funcao + '</td>' +
+                                    '<td>' + administrador.contato + '</td>' +
+                                    '<td>' + administrador.polo + '</td>' +
+                                  '</tr>';
+                        $('#administradores-table-body').append(row);
+                    });
+                },
+                error: function() {
+                    console.error('Erro ao obter a lista de administradores.');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
