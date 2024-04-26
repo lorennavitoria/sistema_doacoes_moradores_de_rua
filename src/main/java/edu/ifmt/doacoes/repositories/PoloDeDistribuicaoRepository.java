@@ -16,7 +16,7 @@ public interface PoloDeDistribuicaoRepository extends JpaRepository<PoloDeDistri
 	
 	@Query("SELECT p FROM PoloDeDistribuicao p " +
 	        "WHERE (UPPER(p.nomeDoPolo) LIKE UPPER(CONCAT('%', :pesquisa, '%')) OR p.nomeDoPolo IS NULL) " +
-	        "AND (UPPER(p.localizacao) LIKE UPPER(CONCAT('%', :pesquisa, '%')) OR p.localizacao IS NULL)")
+	        "OR (UPPER(p.localizacao) LIKE UPPER(CONCAT('%', :pesquisa, '%')) OR p.localizacao IS NULL)")
 	Page<PoloDeDistribuicao> buscaGenerica(String pesquisa, Pageable pageable);
 
 }

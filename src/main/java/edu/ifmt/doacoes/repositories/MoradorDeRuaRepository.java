@@ -12,8 +12,8 @@ public interface MoradorDeRuaRepository extends JpaRepository<MoradorDeRua, Long
 
 	@Query("SELECT a FROM MoradorDeRua a " +
 	        "WHERE (UPPER(a.nome) LIKE UPPER(CONCAT('%', :pesquisa, '%')) OR a.nome IS NULL) " +
-	        "AND (UPPER(a.localizacao) LIKE UPPER(CONCAT('%', :pesquisa, '%')) OR a.localizacao IS NULL) " +
-	        "AND ((UPPER(a.cpf) LIKE UPPER(CONCAT('%', :pesquisa, '%'))) OR a.cpf IS NULL)")
+	        "OR (UPPER(a.localizacao) LIKE UPPER(CONCAT('%', :pesquisa, '%')) OR a.localizacao IS NULL) " +
+	        "OR ((UPPER(a.cpf) LIKE UPPER(CONCAT('%', :pesquisa, '%'))) OR a.cpf IS NULL)")
 	Page<MoradorDeRua> buscaGenerica(String pesquisa, Pageable pageable);
 
 
