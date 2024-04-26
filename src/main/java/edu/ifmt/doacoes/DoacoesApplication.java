@@ -8,7 +8,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import edu.ifmt.doacoes.controller.AdministradorController;
 import edu.ifmt.doacoes.model.Administrador;
 import edu.ifmt.doacoes.repositories.AdministradorRepository;
-import edu.ifmt.doacoes.utils.JPAUtil;
 import jakarta.persistence.EntityManager;
 
 @SpringBootApplication
