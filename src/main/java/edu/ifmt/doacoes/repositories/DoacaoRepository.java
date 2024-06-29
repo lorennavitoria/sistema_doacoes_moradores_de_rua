@@ -26,4 +26,9 @@ public interface DoacaoRepository extends JpaRepository<Doacao, Long>{
 	@Query("SELECT d FROM Doacao d "
 			+"WHERE d.tipoItemDoacao.idTipoItemDoacao =:idTipoDoacao")
 	List<Doacao> buscaDoacaoByTipoDoacao(Long idTipoDoacao);
+
+
+	@Query("SELECT d from Doacao d "
+			+"WHERE d.polo.idPolo = :id")
+	List<Doacao> buscaDoacaoByIdPolo(Long id);
 }

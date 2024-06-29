@@ -23,6 +23,7 @@ import edu.ifmt.doacoes.model.Doacao;
 import edu.ifmt.doacoes.model.Doador;
 import edu.ifmt.doacoes.model.PoloDeDistribuicao;
 import edu.ifmt.doacoes.repositories.AdministradorRepository;
+import edu.ifmt.doacoes.repositories.DoacaoRepository;
 import edu.ifmt.doacoes.repositories.DoadorRepository;
 import edu.ifmt.doacoes.repositories.PoloDeDistribuicaoRepository;
 import jakarta.transaction.Transactional;
@@ -36,6 +37,7 @@ public class PoloDeDistribuicaoController {
 	@Autowired
 	AdministradorRepository administradorRepository;
 	
+	@Autowired DoacaoRepository doacaoRepository;
 	
 	@PostMapping
 	public ResponseEntity<PoloDeDistribuicao> createPoloDistribuicao(@RequestBody PoloDeDistribuicao poloDistribuicao){
@@ -81,7 +83,8 @@ public class PoloDeDistribuicaoController {
 	        }
 
 	        List<Administrador> listaAdministrador = administradorRepository.buscaAdministradorByIdPolo(id);
-	        if (!listaAdministrador.isEmpty()) {
+	        List<Doacao> listaDoacao = doacaoRepository.buscaDoacaoByIdPolo(id);
+	        if (!listaAdministrador.isEmpty() || !listaDoacao.isEmpty()) {
 	           return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Não pode excluir Polo, pois existem registros vinculados a ele");
 	        }
 	        
